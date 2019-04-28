@@ -43,7 +43,7 @@ const App = () => {
             id="standard-search"
             label="Search Field"
             type="search"
-            //className={}
+            style={{ background: transparent }}
             fullWidth
             margin="normal"
             value={search}
