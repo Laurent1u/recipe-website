@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Recipe from "./Recipe";
+import TextField from "@material-ui/core/TextField";
+import Search from "@material-ui/icons/Search";
 import "./App.css";
 
 const App = () => {
-  const APP_ID = "fa6fdf86";
-  const APP_KEY = "83c74dd3d52d4f1f5af6dbc83bbcbb30";
+  const APP_ID = "eeabe6b3";
+  const APP_KEY = "7c6608d08ae22f8d82e0ec6f9c347577";
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
@@ -33,27 +35,34 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <form className="search-form" onSubmit={getSearch}>
-        <input
-          className="search-bar"
-          type="text"
-          value={search}
-          onChange={updateSearch}
-        />
-        <button className="search-button" type="submit">
-          Search
-        </button>
-      </form>
-      {recipes.map((recipe, index) => (
-        <Recipe
-          key={index}
-          title={recipe.recipe.label}
-          calories={recipe.recipe.calories}
-          image={recipe.recipe.image}
-          ingredients={recipe.recipe.ingredients}
-        />
-      ))}
+    <div id="container">
+      <div id="section-search">
+        <Search />
+        <form onSubmit={getSearch} style={{ width: "100%" }}>
+          <TextField
+            id="standard-search"
+            label="Search Field"
+            type="search"
+            //className={}
+            fullWidth
+            margin="normal"
+            value={search}
+            onChange={updateSearch}
+          />
+        </form>
+      </div>
+
+      <div id="section-recipe">
+        {recipes.map((recipe, index) => (
+          <Recipe
+            key={index}
+            title={recipe.recipe.label}
+            calories={recipe.recipe.calories}
+            image={recipe.recipe.image}
+            ingredients={recipe.recipe.ingredients}
+          />
+        ))}
+      </div>
     </div>
   );
 };
